@@ -1,0 +1,21 @@
+CREATE DATABASE expense_organizer;
+CREATE DATABASE
+Guest=# \c expense_organizer
+You are now connected to database "expense_organizer" as user "Guest".
+expense_organizer=# CREATE TABLE expenses (id serial PRIMARY KEY, description varchar, amount currency, date date);
+ERROR:  type "currency" does not exist
+LINE 1: ...d serial PRIMARY KEY, description varchar, amount currency, ...
+                                                             ^
+expense_organizer=# CREATE TABLE expenses (id serial PRIMARY KEY, description varchar, amount money, date date);
+CREATE TABLE
+expense_organizer=# \c guest
+FATAL:  database "guest" does not exist
+Previous connection kept
+expense_organizer=# \c Guest
+You are now connected to database "Guest" as user "Guest".
+Guest=# CREATE DATABASE expense_organizer_test WITH TEMPLATE expense_orgainzer
+Guest-# ;
+ERROR:  template database "expense_orgainzer" does not exist
+Guest=# CREATE DATABASE expense_organizer_test WITH TEMPLATE expense_organizer
+;
+CREATE DATABASE
